@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.dev.jdbc</groupId>
+  <artifactId>hibernate-vector-oracle-db</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>hibernate-vector-oracle-db</name>
+  <description>
+    Building AI-Powered Database Apps with Hibernate Vector and the Oracle AI
+    Database 26ai — Part 1 — Using Hibernate Vector module with Oracle Vector
+    Data Type
+  </description>
+  <url>
+    https://medium.com/oracledevs/unleashing-ai-powered-database-apps-mastering-hibernate-vector-with-oracle-database-23ai-f46d9ad8496d
+  </url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Java Version -->
+    <maven.compiler.release>25</maven.compiler.release>
+    <!-- Oracle JDBC/UCP -->
+    <jdbc.version>23.26.2.0.0</jdbc.version>
+    <!-- Hibernate -->
+    <hibernate.version>6.6.10.Final</hibernate.version>
+  </properties>
+
+  <dependencies>
+    <!-- Oracle AI Database JDBC -->
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc17</artifactId>
+      <version>${jdbc.version}</version>
+    </dependency>
+    <!-- Oracle Universal Connection Pool library -->
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ucp17</artifactId>
+      <version>${jdbc.version}</version>
+    </dependency>
+    <!-- Hibernate Core -->
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <!-- Hibernate Vector -->
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-vector</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <!-- Hibernate integration for Oracle UCP -->
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-ucp</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <!-- Jakarta Persistence -->
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+    <!-- Jakarta Transactions -->
+    <dependency>
+      <groupId>jakarta.transaction</groupId>
+      <artifactId>jakarta.transaction-api</artifactId>
+      <version>2.0.1</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Java Compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.hibernate.orm</groupId>
+              <artifactId>hibernate-jpamodelgen</artifactId>
+              <version>${hibernate.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+      <!-- Run Java Main Classes -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration>
+          <mainClass>com.oracle.dev.jdbc.HibernateVectorDataTypeOracleDatabase</mainClass>
+          <cleanupDaemonThreads>false</cleanupDaemonThreads>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
